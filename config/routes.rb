@@ -1,8 +1,14 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Route for all users page
+  get '/users', to: 'users#index', as: 'users'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Route for single user page
+  get '/users/:id', to: 'users#show', as: 'user'
+
+  # Route for all posts by a given user page
+  get '/users/:user_id/posts', to: 'posts#index', as: 'user_posts'
+
+  # Route for single post page
+  get '/posts/:id', to: 'posts#show', as: 'user_post'
+
 end
