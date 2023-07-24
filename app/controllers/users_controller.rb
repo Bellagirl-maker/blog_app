@@ -7,6 +7,3 @@ class UsersController < ApplicationController
     # Placeholder code for single user page view
   end
 end
-
-
-

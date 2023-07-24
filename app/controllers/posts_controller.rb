@@ -7,5 +7,3 @@ class PostsController < ApplicationController
     # Placeholder code for single post page view
   end
 end
-
-
