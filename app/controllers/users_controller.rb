@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
-    # Placeholder code for all users page view
+    @users = User.all
   end
 
   def show
-    # Placeholder code for single user page view
+    @user = User.find(params[:id])
+    @recent_posts = @user.posts.order(created_at: :desc).limit(5)
   end
 end

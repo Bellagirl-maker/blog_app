@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   def index
-    # Placeholder code for all posts by a given user page view
+    @user = User.find(params[:user_id])
   end
 
   def show
-    # Placeholder code for single post page view
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
   end
 end
