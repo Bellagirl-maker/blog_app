@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
 
   has_many :comment_entries, dependent: :destroy
+  has_many :likes, class_name: 'LikeEntry', dependent: :destroy
 
   validates :author, presence: true
   validates :title, presence: true, length: { maximum: 250 }
@@ -9,6 +10,8 @@ class Post < ApplicationRecord
   validates :likes_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
   after_create :update_user_post_counter
+
+  attribute :content, :text
 
   def five_recent_comments
     comment_entries.order(created_at: :desc).limit(5)
