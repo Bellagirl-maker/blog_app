@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @user = current_user # Assuming you have a method to retrieve the current user in your ApplicationController
+    @user = current_user
     @posts = Post.all
   end
 
@@ -52,15 +52,3 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content)
   end
 end
-
-
-# class PostsController < ApplicationController
-#   def index
-#     @user = User.find(params[:user_id])
-#   end
-
-#   def show
-#     @user = User.find(params[:user_id])
-#     @post = Post.find(params[:id])
-#   end
-# end
