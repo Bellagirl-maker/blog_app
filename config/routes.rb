@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-  # Route for all users page
-  get '/users', to: 'users#index', as: 'users'
+  root 'users#index'
+  
+  post '/users/:user_id/posts/:post_id/comments', to: 'comments#create'
 
-  # Route for single user page
-  get '/users/:id', to: 'users#show', as: 'user'
-
-  # Route for all posts by a given user page
-  get '/users/:user_id/posts', to: 'posts#index', as: 'user_posts'
-
-  # Route for single post page
-  get '/posts/:id', to: 'posts#show', as: 'user_post'
-
+  resources :users, only: [:show] do
+    resources :posts, only: [:index, :show, :new, :create] do
+      resources :comments, only: [:new, :create]
+      resource :like, only: [:create, :destroy], controller: 'likes'
+    end
+  end
 end

@@ -1,20 +1,25 @@
-<h1>Post Details</h1>
 <div class="detailed-post-box container">
   <div class="username-and-counters">
-    <p class="dp-username">Post #1 by <%= @user.name %></p>
-    <small class="dp-counters">Comments: <%= @post.comments.length %>, Likes: <%= @post.likes.length %></small>
+    <p class="dp-username"><%= @post.title %> by <%= @user.name %></p>
+    <small class="dp-counters">Comments: <%= @post.comment_entries.length %>, Likes: <%= @post.likes_counter %></small>
   </div>
 
   <p class="dp-text"><%= @post.text %></p>
 
+  <%= render 'shared/like' %>
+  <a href="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/new" class="add-comment-box">Add a comment</a>
+
   <div class="dp-comments comment-card">
     <h3>Comments</h3>
-    <% if !@post.comments.length.positive? %>
-      <p>No comments yet</p>
-    <% end %>
-
-    <% @post.comments.each do |comment| %>
-      <p><%= comment.author.name %>: <%= comment.text %> </p>
+    <% if @post.comment_entries.any? %>
+      <ul>
+        <% @post.comment_entries.each do |comment| %>
+          <li><%= comment.text %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No comments yet.</p>
     <% end %>
   </div>
 </div>
+
