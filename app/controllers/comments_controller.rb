@@ -6,20 +6,22 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment = CommentEntry.new(comment_params)
+    @comment.author = current_user
     @post = Post.find(params[:post_id])
-    @comment = @post.comment_entries.build(comment_params)
-    @comment.user = current_user
+    @comment.post = @post
 
     if @comment.save
-      redirect_to post_path(@post), notice: 'Comment was successfully created.'
+      redirect_to "/users/#{current_user.id}/posts/#{@post.id}"
     else
-      render :new
+      render :new, status: 422
     end
   end
 
   private
 
+
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment_entry).permit(:text)
   end
 end

@@ -1,6 +1,6 @@
 <div class="detailed-post-box container">
   <div class="username-and-counters">
-    <p class="dp-username">Post #1 by <%= @user.name %></p>
+    <p class="dp-username"><%= @post.title %> by <%= @user.name %></p>
     <small class="dp-counters">Comments: <%= @post.comment_entries.length %>, Likes: <%= @post.likes_counter %></small>
   </div>
 
@@ -11,18 +11,14 @@
 
   <div class="dp-comments comment-card">
     <h3>Comments</h3>
-    <% if !@post.comment_entries.any? %>
-    <ul>
-    <% @post.comment_entries.each do |comment| %>
-      <li><%= comment.body %></li>
-    <% end %>
-  </ul>
-  <% else %>
-  <p>No comments yet.</p>
-    <% end %>
-
-    <% @post.comment_entries.each do |comment| %>
-      <p><%= comment.author.name %>: <%= comment.text %> </p>
+    <% if @post.comment_entries.any? %>
+      <ul>
+        <% @post.comment_entries.each do |comment| %>
+          <li><%= comment.text %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No comments yet.</p>
     <% end %>
   </div>
 </div>
