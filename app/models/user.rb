@@ -9,4 +9,9 @@ class User < ApplicationRecord
   scope :three_recent_posts, ->(user) { user.posts.order(created_at: :desc).limit(3) }
 
   attribute :post_counter, :integer, default: 0
+
+  # def all_posts_with_comments
+  #   posts.includes(:comment_entries).order(created_at: :desc)
+  # end
+
 end
