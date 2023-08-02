@@ -2,12 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @user = current_user
-    @posts = Post.all
+    # @user = current_user
+    @user = User.find(params[:user_id])
+    @posts = Post.includes(:comment_entries).all
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comment_entries).find(params[:id])
     @user = @post.author
     @comments = @post.comment_entries
     @comment = CommentEntry.new
