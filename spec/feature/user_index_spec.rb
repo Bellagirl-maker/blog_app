@@ -18,7 +18,14 @@ RSpec.describe 'User', type: :feature do
       expect(page).to have_content(user.name)
       expect(page).to have_css("img[src*='#{user.photo}']")
       expect(page).to have_content(user.posts.count)
-      expect(page).to have_link(href: "users/#{user.id}")
+    end
+  end
+
+  it 'redirects current user to show page' do
+    users.each do |user|
+      find(:xpath, "//a[@class='home-card' and contains(@href, 'users/#{user.id}')]").click
+      expect(page).to have_current_path(user_path(user))
+      visit root_path
     end
   end
 end

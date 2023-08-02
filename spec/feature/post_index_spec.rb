@@ -30,7 +30,6 @@ RSpec.describe 'User', type: :feature do
         expect(page).to have_content(post.text[0..49])
         expect(page).to have_content("Comments: #{post.comments_counter}")
         expect(page).to have_content("Likes: #{post.likes_counter}")
-        # expect(page).to have_link("#{post.title}", href: "users/1/posts/1")
       end
     end
 

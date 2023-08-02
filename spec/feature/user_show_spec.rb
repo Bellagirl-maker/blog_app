@@ -5,7 +5,7 @@ RSpec.describe 'User show page', type: :feature do
 
   before do
     3.times do |n|
-      user.posts.create(
+      Post.create(
         title: "Post title #{n + 1}",
         text: "Post text #{n + 1}"
       )
@@ -30,5 +30,20 @@ RSpec.describe 'User show page', type: :feature do
         expect(page).to have_content(post.text)
       end
     end
+  end
+  it 'show see all post button' do
+    expect(page).to have_content('See all posts')
+  end
+  it 'redirects to post show page' do
+    posts = user.posts
+    posts.each do |post|
+      click_link post.title
+      expect(current_path).to eq(post_path(post))
+      visit user_path(user)
+    end
+  end
+  it 'redirects user to post index page' do
+    click_link 'See all posts'
+    expect(current_path).to eq(user_posts_path(user))
   end
 end
