@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "User show page", type: :feature do
-  let!(:user) { User.create(name: "Sarkodie", photo: "/path/to/photo1.jpg", post_counter: 10) }
+RSpec.describe 'User show page', type: :feature do
+  let!(:user) { User.create(name: 'Sarkodie', photo: '/path/to/photo1.jpg', post_counter: 10, bio: 'Very good') }
 
   before do
     3.times do |n|
@@ -23,13 +23,12 @@ RSpec.describe "User show page", type: :feature do
   it 'Displaying first 3 posts' do
     # Fetch the first 3 posts based on their creation order
     first_three_posts = user.posts.order(created_at: :desc).limit(3)
-  
-    within "#posts" do
+
+    within '#posts' do
       first_three_posts.each do |post|
         expect(page).to have_content(post.title)
         expect(page).to have_content(post.text)
       end
     end
   end
-  
 end

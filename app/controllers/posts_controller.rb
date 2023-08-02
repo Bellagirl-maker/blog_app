@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @user = current_user
+    # @user = current_user
+    @user = User.find(params[:user_id])
     @posts = Post.includes(:comment_entries).all
   end
 

@@ -13,5 +13,4 @@ class User < ApplicationRecord
   # def all_posts_with_comments
   #   posts.includes(:comment_entries).order(created_at: :desc)
   # end
-
 end
