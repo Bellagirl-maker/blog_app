@@ -63,7 +63,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
