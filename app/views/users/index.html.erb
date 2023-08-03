@@ -1,4 +1,6 @@
 <h1>Here is a list of all users:</h1>
+<p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
 <% @users.each_with_index do |user, index| %>
     <a href="users/<%= user.id %>" class="home-card"><%= render 'shared/user_card', user: user%></a>
   <% end %>
