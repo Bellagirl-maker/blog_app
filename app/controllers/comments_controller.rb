@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @comment.post = @post
 
     if @comment.save
+      cookie[:comment_id] = @comment.id
       redirect_to "/users/#{current_user.id}/posts/#{@post.id}"
     else
       render :new, status: 422

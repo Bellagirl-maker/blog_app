@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'users#index'
   
   post '/users/:user_id/posts/:post_id/comments', to: 'comments#create'

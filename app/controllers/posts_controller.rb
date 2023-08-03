@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    # @user = current_user
     @user = User.find(params[:user_id])
     @posts = Post.includes(:comment_entries).all
   end
@@ -24,6 +23,7 @@ class PostsController < ApplicationController
     @post = @user.posts.build(post_params)
 
     if @post.save
+      cookie[:post_id] = @post.id
       redirect_to user_post_path(@user, @post), notice: 'Post was successfully created.'
     else
       render :new
