@@ -41,9 +41,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path, notice: 'Post was successfully deleted.'
+    @post = Post.find(params[:id])
+    authorize! :destroy, @post
+    # Delete the post logic
   end
+  
+  # def destroy
+  #   @post.destroy
+  #   redirect_to posts_path, notice: 'Post was successfully deleted.'
+  # end
 
   private
 

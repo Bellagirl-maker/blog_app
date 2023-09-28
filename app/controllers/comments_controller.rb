@@ -24,4 +24,11 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment_entry).permit(:text)
   end
+
+  def destroy
+    @comment = CommentEntry.find(params[:id])
+    authorize! :destroy, @comment
+    # Delete the comment logic
+  end
+  
 end

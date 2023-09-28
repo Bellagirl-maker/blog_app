@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @recent_posts = @user.posts.order(created_at: :desc).limit(5)
-    cookie[:user_id] = @user.id
+    cookies[:user_id] = @user.id
   end
 end

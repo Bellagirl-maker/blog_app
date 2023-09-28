@@ -2,6 +2,9 @@
   <div class="username-and-counters">
     <p class="dp-username"><%= @post.title %> by <%= @user.name %></p>
     <small class="dp-counters">Comments: <%= @post.comment_entries.length %>, Likes: <%= @post.likes_counter %></small>
+  <% if can?(:destroy, @post) %>
+  <%= button_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
   </div>
 
   <p class="dp-text"><%= @post.text %></p>
